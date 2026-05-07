@@ -100,10 +100,10 @@ public class MainActivity extends AppCompatActivity {
         if (modoEdicion) {
             // --- LÓGICA DE ACTUALIZAR ---
             empleado.setIdEmpleado(idAEditar); // Debes tener el método setIdEmpleado en tu modelo
-            apiService.modificarEmpleado(empleado).enqueue(new Callback<Boolean>() {
+            apiService.modificarEmpleado(empleado).enqueue(new Callback<Integer>() {
                 @Override
-                public void onResponse(Call<Boolean> call, Response<Boolean> response) {
-                    if (response.isSuccessful() && response.body() != null && response.body()) {
+                public void onResponse(Call<Integer> call, Response<Integer> response) {
+                    if (response.isSuccessful() && response.body() != null && response.body() == 1) {
                         Toast.makeText(MainActivity.this, "✅ Actualizado", Toast.LENGTH_SHORT).show();
                         finish(); // Regresa a la lista
                     } else {
@@ -111,7 +111,7 @@ public class MainActivity extends AppCompatActivity {
                     }
                 }
                 @Override
-                public void onFailure(Call<Boolean> call, Throwable t) {
+                public void onFailure(Call<Integer> call, Throwable t) {
                     Toast.makeText(MainActivity.this, "Error de red", Toast.LENGTH_SHORT).show();
                 }
             });

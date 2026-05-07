@@ -10,7 +10,7 @@ import retrofit2.http.DELETE;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
 import retrofit2.http.PUT;
-import retrofit2.http.Path;
+import retrofit2.http.Query;
 
 public interface ApiService {
     @POST("api/MaestroEmpleado/Agregar")
@@ -20,8 +20,8 @@ public interface ApiService {
     Call<List<MaestroEmpleado>> listarEmpleados();
 
     @PUT("api/MaestroEmpleado/Modificar")
-    Call<Boolean> modificarEmpleado(@Body MaestroEmpleado empleado);
+    Call<Integer> modificarEmpleado(@Body MaestroEmpleado empleado);
 
-    @DELETE("api/MaestroEmpleado/Eliminar/{id}")
-    Call<Boolean> eliminarEmpleado(@Path("id") int id);
+    @DELETE("api/MaestroEmpleado/Eliminar")
+    Call<Boolean> eliminarEmpleado(@Query("id") int id);
 }
